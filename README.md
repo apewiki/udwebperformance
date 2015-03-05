@@ -30,9 +30,45 @@ Some useful tips to help you get started:
 
 Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 
+My reflection on task 1:
+	- Add async attribute to javascript not used for DOM construction
+	- Move inline javascript from head to bottom of html body
+	- Set media query to print for print.css
+	- Remove link to google fonts, inline latin subset of used fonts to CSS file
+	- Inline entire style.css to index.html
+	- Removed unused css rules
+	- Resize and optimize pizzareia.jpg, create and optimize pizzareia_sm.jpg of smaller dimensions for portfolio page
+	- Optimize all images (pizzareia.jpg, pizzareia_sm.jpg, profilepic.jpg) using jpegtran
+
+Results: I was able to achieve pagespeed score 95 on pagespeed insights.
+
+
 ####Part 2: Optimize Frames per Second in pizza.html
 
 To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
+
+My reflection on task 2:
+	- main.js: move unchanged variable scrollTop outside the loop of updatePosition function
+	- main.js: uses getElelmentsByClassName or other getElement(s)By... function instead of querySelector(All) to reference DOM elements
+	- main.js: moved unchanged variables dx and newwidth outside the loop of changePizzaSizes function
+	- Added backface-visibility: hidden in style.css
+	- Inlined style.css in pizza.html since css file is small
+	- Minified bootstrap-grid.css to bootstrap-grid-min.css using YUICompression
+	- Minified main.js to main-min.js using YUICompression
+	- Optimized pizza.png using optipng, but there was little reduction of file size
+	- reduced number of floating pizzas to 50 from 200
+
+Results:
+	- Improved scrolling speed. On mobile, over 90% of the time scrolling at over 60 FPS. On desktop, scrolling much faster than 60 FPS. 
+	- Improved pizza resizing. On mobile at 3-4 ms on average, on desktop 1-2 ms
+	- Improved score on pagespeed insights for pizza.html page, 87 on mobile, 93 on desktop
+
+Issues:
+    - Not sure how to further improve pizza page load time. On mobile, around 100 ms, on desktop around 28 ms
+    - I was not clear about the requirements of this project initially. For instance, I didn't realize that resizing pizza was part of the requirement until I first submitted the project. Nevertheless, it is not excuse not to fix the obvious problem there. 
+    - For the portfolio page, if I didn't inline style.css, I could only score 87 on mobile. Is there a way to score above 90 without inlining css?
+    - For pizza page scrolling, FPS measurements fluctuate on mobile, occasionally certain frames could be below 60 FPS. Backface-visibility trick works well with desktop, not mobile. Anyway to improved further?
+    - What else can be done in addition to minifcation and image optimization to improve pizza load speed? Still takes 100 ms to load on mobile. I tried to resize pizza.png for moving pizzas to 85x110, but it did not affect load time significantly, so I decided not to use this approach as i have to load one small pizza image and one regular size image for the static one. 
 
 You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
 
